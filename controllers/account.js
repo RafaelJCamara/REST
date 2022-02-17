@@ -13,8 +13,8 @@ module.exports.getAccountById = (req, res) =>{
     console.log(`Request to retrieve account: ${id}`);
     const foundAccount = findAccount(parseInt(id));
     if(!foundAccount){
-        return res.json({
-            message:"Please provide a valid account."
+        return res.status(404).json({
+            message:"Account not found. Please provide a valid account."
         });
     }
     const contentToSend = `{
@@ -45,5 +45,5 @@ module.exports.getAccountById = (req, res) =>{
             }
         ]
     }`;
-    return res.send(contentToSend);
+    return res.status(200).send(contentToSend);
 }
