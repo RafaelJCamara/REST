@@ -5,5 +5,8 @@ function isValidRequest(request) {
 }
 
 module.exports.validateIncomingRequest = (req,res, next) =>{
-    isValidRequest(req) ? next() : res.status(405).end();
+    isValidRequest(req) ? 
+                            next() : 
+                            res.set('Allow', allowedMethods.toString()) && 
+                            res.status(405).end();
 }
