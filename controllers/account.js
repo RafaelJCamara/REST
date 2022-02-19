@@ -4,6 +4,8 @@ let accounts = [
     {id:3, amount: 235, currency: "USD"}
 ];
 
+const allowedMethods = ["GET"];
+
 function findAccount(id){
     return accounts.find(account => account.id===id);
 }
@@ -46,4 +48,9 @@ module.exports.getAccountById = (req, res) =>{
         ]
     }`;
     return res.status(200).send(contentToSend);
+}
+
+module.exports.accountByIdOptions = (req,res) =>{
+    res.set('Allow', allowedMethods.toString());
+    res.status(200).end();
 }
